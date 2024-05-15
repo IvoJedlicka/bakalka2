@@ -1,0 +1,16 @@
+table {
+  border-collapse: collapse;
+}
+
+table, td {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+td:hover {
+  cursor: pointer;
+}
+
+#average {
+  margin-top: 20px;
+}
