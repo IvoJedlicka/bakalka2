@@ -1,47 +1,47 @@
-// Objekt pro uchování hodnot a funkci pro výpočet průměru
-let hodnoty = {};
+// Matice obsahující textové hodnoty
+let maticeText = [
+    ["Text 1", "Text 2", "Text 3"],
+    ["Text 4", "Text 5", "Text 6"],
+    ["Text 7", "Text 8", "Text 9"]
+];
 
-document.addEventListener("DOMContentLoaded", function() {
-    let bunky = document.querySelectorAll("#hodnoceni td");
-    bunky.forEach(function(bunka) {
-        let hodnota = parseFloat(bunka.getAttribute("data-hodnota"));
-        hodnoty[bunka.textContent] = hodnota;
+// Matice přiřazující číselné hodnoty k textovým hodnotám
+let maticeHodnot = [
+    [5, 8, 3],
+    [7, 2, 9],
+    [4, 6, 1]
+];
+
+// Pole pro uchování hodnot buňek po kliknutí
+let hodnoty = [];
+
+// Vygenerovat tabulku z maticeText
+let tabulka = document.getElementById("tabulka");
+for (let i = 0; i < maticeText.length; i++) {
+    let radka = document.createElement("tr");
+    for (let j = 0; j < maticeText[i].length; j++) {
+        let bunka = document.createElement("td");
+        bunka.textContent = maticeText[i][j];
         bunka.addEventListener("click", function() {
-            ulozHodnotu(bunka);
+            ulozHodnotu(maticeHodnot[i][j]);
         });
-    });
-    aktualizujPrumer();
-});
-
-function ulozHodnotu(bunka) {
-    let hodnota = hodnoty[bunka.textContent];
-    if (!isNaN(hodnota)) {
-        if (hodnota === null) {
-            // Pokud hodnota je null, vyžádejte od uživatele novou hodnotu
-            hodnota = prompt("Zadejte číselnou hodnotu pro tuto buňku:");
-            hodnota = parseFloat(hodnota);
-            if (isNaN(hodnota)) {
-                alert("Zadali jste neplatnou hodnotu.");
-                return;
-            }
-            hodnoty[bunka.textContent] = hodnota;
-        } else {
-            // Pokud hodnota již existuje, smažte ji
-            hodnoty[bunka.textContent] = null;
-        }
-        aktualizujPrumer();
+        radka.appendChild(bunka);
     }
+    tabulka.appendChild(radka);
 }
 
+// Funkce pro uložení hodnoty do pole a aktualizaci průměru
+function ulozHodnotu(hodnota) {
+    hodnoty.push(hodnota);
+    aktualizujPrumer();
+}
+
+// Funkce pro výpočet průměrné hodnoty pole
 function aktualizujPrumer() {
     let soucet = 0;
-    let pocet = 0;
-    for (let klic in hodnoty) {
-        if (hodnoty[klic] !== null) {
-            soucet += hodnoty[klic];
-            pocet++;
-        }
+    for (let i = 0; i < hodnoty.length; i++) {
+        soucet += hodnoty[i];
     }
-    let prumer = pocet > 0 ? soucet / pocet : 0; // Zajistěte, že průměr je 0, pokud není žádná hodnota
+    let prumer = hodnoty.length > 0 ? soucet / hodnoty.length : 0;
     document.getElementById("prumer").textContent = "Průměrná hodnota: " + prumer.toFixed(2);
 }
