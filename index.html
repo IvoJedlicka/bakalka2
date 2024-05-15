@@ -1,30 +1,47 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webová stránka</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabulka hodnocení</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-  <table id="myTable">
-    <tr>
-      <td onclick="saveCellValue(this)"><span class="cell-value">něco</span></td>
-      <td onclick="saveCellValue(this)"><span class="cell-value">2</span></td>
-      <td onclick="saveCellValue(this)"><span class="cell-value">3</span></td>
-    </tr>
-    <tr>
-      <td onclick="saveCellValue(this)"><span class="cell-value">4</span></td>
-      <td onclick="saveCellValue(this)"><span class="cell-value">5</span></td>
-      <td onclick="saveCellValue(this)"><span class="cell-value">6</span></td>
-    </tr>
-    <tr>
-      <td onclick="saveCellValue(this)"><span class="cell-value">7</span></td>
-      <td onclick="saveCellValue(this)"><span class="cell-value">8</span></td>
-      <td onclick="saveCellValue(this)"><span class="cell-value">9</span></td>
-    </tr>
-  </table>
-  <p id="average"></p>
-  <script src="script.js"></script>
+    <table>
+        <tr>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+            <th>D</th>
+            <th>E</th>
+            <th>F</th>
+        </tr>
+        <tr>
+            <td colspan="6">MOTIVACE A</td>
+        </tr>
+        <tr>
+            <td>Žák je aktivní, jeví upřímný zájem o předmět a touhu postupovat kupředu.</td>
+            <td>Během vyučování se vždy aktivně zapojuje.</td>
+            <td>Žák je zpravidla aktivní, pokud se mu daří. Během vyučování se aktivně zapojuje.</td>
+            <td>Žák má výkyvy v přístupu, jeho aktivita v hodině se objevuje nepravidelně.</td>
+            <td>Žák je aktivní jen výjimečně, sám nevyvíjí žádnou aktivitu, ale reaguje pozitivně na domluvu.</td>
+            <td>Žák je v přístupu zcela pasivní. Nereaguje na domluvu. Negativně působí na třídu, vyrušuje a strhává na sebe pozornost,provokuje.</td>
+        </tr>
+    </table>
 </body>
 </html>
