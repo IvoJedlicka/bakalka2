@@ -1,16 +1,17 @@
+/* Styly pro tabulku */
 table {
-  border-collapse: collapse;
+    width: 100%;
+    border-collapse: collapse;
 }
 
-table, td {
-  border: 1px solid black;
-  padding: 10px;
+/* Styly pro buňky v záhlaví */
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
 }
 
-td:hover {
-  cursor: pointer;
-}
-
-#average {
-  margin-top: 20px;
+/* Styly pro buňky v záhlaví */
+th {
+    background-color: #f2f2f2;
 }
