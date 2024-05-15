@@ -1,62 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabulka hodnocení</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <table>
-        <tr>
-            <th></th>
-            <th>A</th>
-            <th>B</th>
-            <th>C</th>
-            <th>D</th>
-            <th>E</th>
-            <th>F</th>
-        </tr>
-        <tr>
-            <td>MOTIVACE A AKTIVITA PŘI VÝUCE</td>
-            <td>Žák je aktivní, jeví upřímný zájem o předmět a touhu postupovat kupředu.</td>
-            <td>Během vyučování se vždy aktivně zapojuje.</td>
-            <td>Žák je zpravidla aktivní, pokud se mu daří. Během vyučování se aktivně zapojuje.</td>
-            <td>Žák má výkyvy v přístupu, jeho aktivita v hodině se objevuje nepravidelně.</td>
-            <td>Žák je aktivní jen výjimečně, sám nevyvíjí žádnou aktivitu, ale reaguje pozitivně na domluvu.</td>
-            <td>Žák je v přístupu zcela pasivní. Nereaguje na domluvu. Negativně působí na třídu, vyrušuje a strhává na sebe pozornost,provokuje.</td>
-        </tr>
-    </table>
-    <div id="prumer"></div>
-    <script>
-        let hodnoty = [];
+// Objekt pro uchování hodnot a funkci pro výpočet průměru
+let hodnoty = {};
 
-        function prumerPole(pole) {
-            let soucet = 0;
-            for (let i = 0; i < pole.length; i++) {
-                soucet += pole[i];
-            }
-            return soucet / pole.length;
-        }
-
-        function ulozHodnotu(hodnota) {
-            hodnoty.push(hodnota);
-            let prumer = prumerPole(hodnoty);
-            document.getElementById('prumer').innerText = `Průměr: ${prumer}`;
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            let bunky = document.querySelectorAll('td');
-
-            bunky.forEach(function (bunka) {
-                bunka.addEventListener('click', function () {
-                    let hodnota = parseInt(this.innerText);
-                    if (!isNaN(hodnota)) {
-                        ulozHodnotu(hodnota);
-                    }
-                });
-            });
+document.addEventListener("DOMContentLoaded", function() {
+    let bunky = document.querySelectorAll("#hodnoceni td");
+    bunky.forEach(function(bunka) {
+        let hodnota = parseFloat(bunka.getAttribute("data-hodnota"));
+        hodnoty[bunka.textContent] = hodnota;
+        bunka.addEventListener("click", function() {
+            ulozHodnotu(bunka);
         });
-    </script>
-</body>
-</html>
+    });
+    aktualizujPrumer();
+});
+
+function ulozHodnotu(bunka) {
+    let hodnota = hodnoty[bunka.textContent];
+    if (!isNaN(hodnota)) {
+        if (hodnota === null) {
+            // Pokud hodnota je null, vyžádejte od uživatele novou hodnotu
+            hodnota = prompt("Zadejte číselnou hodnotu pro tuto buňku:");
+            hodnota = parseFloat(hodnota);
+            if (isNaN(hodnota)) {
+                alert("Zadali jste neplatnou hodnotu.");
+                return;
+            }
+            hodnoty[bunka.textContent] = hodnota;
+        } else {
+            // Pokud hodnota již existuje, smažte ji
+            hodnoty[bunka.textContent] = null;
+        }
+        aktualizujPrumer();
+    }
+}
+
+function aktualizujPrumer() {
+    let soucet = 0;
+    let pocet = 0;
+    for (let klic in hodnoty) {
+        if (hodnoty[klic] !== null) {
+            soucet += hodnoty[klic];
+            pocet++;
+        }
+    }
+    let prumer = pocet > 0 ? soucet / pocet : 0; // Zajistěte, že průměr je 0, pokud není žádná hodnota
+    document.getElementById("prumer").textContent = "Průměrná hodnota: " + prumer.toFixed(2);
+}
