@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabulka hodnocení</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <table>
@@ -15,15 +15,48 @@
             <th>C</th>
             <th>D</th>
             <th>E</th>
+            <th>F</th>
         </tr>
         <tr>
             <td>MOTIVACE A AKTIVITA PŘI VÝUCE</td>
-            <td>Žák je aktivní, jeví upřímný zájem o předmět a touhu postupovat kupředu. Během vyučování se vždy aktivně zapojuje.</td>
-            <td>Žák je zpravidla aktivní, pokud se mu daří. Během vyučování se aktivně zapojuje.</td>
-            <td>Žák má výkyvy v přístupu, jeho aktivita v hodině se objevuje nepravidelně.</td>
-            <td>Žák je aktivní jen výjimečně, sám nevyvíjí žádnou aktivitu, ale reaguje pozitivně na domluvu.</td>
-            <td>Žák je v přístupu zcela pasivní. Nereaguje na domluvu. Negativně působí na třídu, vyrušuje a strhává na sebe pozornost,provokuje.</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
         </tr>
     </table>
+    <div id="prumer"></div>
+    <script>
+        let hodnoty = [];
+
+        function prumerPole(pole) {
+            let soucet = 0;
+            for (let i = 0; i < pole.length; i++) {
+                soucet += pole[i];
+            }
+            return soucet / pole.length;
+        }
+
+        function ulozHodnotu(hodnota) {
+            hodnoty.push(hodnota);
+            let prumer = prumerPole(hodnoty);
+            document.getElementById('prumer').innerText = `Průměr: ${prumer}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let bunky = document.querySelectorAll('td');
+
+            bunky.forEach(function (bunka) {
+                bunka.addEventListener('click', function () {
+                    let hodnota = parseInt(this.innerText);
+                    if (!isNaN(hodnota)) {
+                        ulozHodnotu(hodnota);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
