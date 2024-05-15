@@ -1,47 +1,24 @@
-// Objekt pro uchování hodnot a funkci pro výpočet průměru
-let hodnoty = {};
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabulka hodnocení</title>
+</head>
+<body>
+    <table id="hodnoceni">
+        <tr>
+            <td data-hodnota="5">Text 1</td>
+            <td data-hodnota="8">Text 2</td>
+            <td data-hodnota="3">Text 3</td>
+            <!-- Další buňky podle potřeby -->
+        </tr>
+        <!-- Další řádky podle potřeby -->
+    </table>
+    <div id="prumer"></div>
 
-document.addEventListener("DOMContentLoaded", function() {
-    let bunky = document.querySelectorAll("#hodnoceni td");
-    bunky.forEach(function(bunka) {
-        let hodnota = parseFloat(bunka.getAttribute("data-hodnota"));
-        hodnoty[bunka.textContent] = hodnota;
-        bunka.addEventListener("click", function() {
-            ulozHodnotu(bunka);
-        });
-    });
-    aktualizujPrumer();
-});
-
-function ulozHodnotu(bunka) {
-    let hodnota = hodnoty[bunka.textContent];
-    if (!isNaN(hodnota)) {
-        if (hodnota === null) {
-            // Pokud hodnota je null, vyžádejte od uživatele novou hodnotu
-            hodnota = prompt("Zadejte číselnou hodnotu pro tuto buňku:");
-            hodnota = parseFloat(hodnota);
-            if (isNaN(hodnota)) {
-                alert("Zadali jste neplatnou hodnotu.");
-                return;
-            }
-            hodnoty[bunka.textContent] = hodnota;
-        } else {
-            // Pokud hodnota již existuje, smažte ji
-            hodnoty[bunka.textContent] = null;
-        }
-        aktualizujPrumer();
-    }
-}
-
-function aktualizujPrumer() {
-    let soucet = 0;
-    let pocet = 0;
-    for (let klic in hodnoty) {
-        if (hodnoty[klic] !== null) {
-            soucet += hodnoty[klic];
-            pocet++;
-        }
-    }
-    let prumer = pocet > 0 ? soucet / pocet : 0; // Zajistěte, že průměr je 0, pokud není žádná hodnota
-    document.getElementById("prumer").textContent = "Průměrná hodnota: " + prumer.toFixed(2);
-}
+    <script>
+        // JavaScript kód zde
+    </script>
+</body>
+</html>
