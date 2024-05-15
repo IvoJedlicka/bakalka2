@@ -1,7 +1,7 @@
 let values = [];
 
 function saveCellValue(cell) {
-  let cellValue = parseInt(cell.innerText);
+  let cellValue = parseInt(cell.querySelector('.cell-value').innerText);
   let index = values.indexOf(cellValue);
   if (index === -1) {
     values.push(cellValue);
