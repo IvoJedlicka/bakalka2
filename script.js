@@ -1,23 +1,32 @@
-let values = [];
+// Pole pro ukládání hodnot z buňek
+let hodnoty = [];
 
-function saveCellValue(cell) {
-  let cellValue = parseInt(cell.querySelector('.cell-value').innerText);
-  let index = values.indexOf(cellValue);
-  if (index === -1) {
-    values.push(cellValue);
-    cell.style.backgroundColor = "lightblue";
-  } else {
-    values.splice(index, 1);
-    cell.style.backgroundColor = "";
-  }
-  updateAverage();
+// Funkce pro výpočet průměru pole
+function prumerPole(pole) {
+    let soucet = 0;
+    for (let i = 0; i < pole.length; i++) {
+        soucet += pole[i];
+    }
+    return soucet / pole.length;
 }
 
-function updateAverage() {
-  let sum = 0;
-  for (let i = 0; i < values.length; i++) {
-    sum += values[i];
-  }
-  let average = values.length > 0 ? sum / values.length : 0;
-  document.getElementById("average").innerText = "Průměr: " + average;
+// Funkce pro uložení hodnoty z buňky do pole a výpočet průměru
+function ulozHodnotu(hodnota) {
+    hodnoty.push(hodnota);
+    let prumer = prumerPole(hodnoty);
+    document.getElementById('prumer').innerText = `Průměr: ${prumer}`;
 }
+
+// Připojení události kliknutí na buňky k tabulce
+document.addEventListener('DOMContentLoaded', function () {
+    let bunky = document.querySelectorAll('td');
+
+    bunky.forEach(function (bunka) {
+        bunka.addEventListener('click', function () {
+            let hodnota = parseInt(this.innerText);
+            if (!isNaN(hodnota)) {
+                ulozHodnotu(hodnota);
+            }
+        });
+    });
+});
