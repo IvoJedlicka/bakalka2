@@ -60,4 +60,6 @@ function aktualizujPrumer() {
     for (let i = 0; i < hodnoty.length; i++) {
         soucet += hodnoty[i];
     }
-    let prumer = hodnoty
+    let prumer = hodnoty.length > 0 ? soucet / hodnoty.length : 0;
+    document.getElementById("prumer").textContent = "Průměrná hodnota: " + prumer.toFixed(2);
+}
