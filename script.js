@@ -73,5 +73,27 @@ function aktualizujPrumer() {
         soucet += hodnoty[i];
     }
     let prumer = hodnoty.length > 0 ? soucet / hodnoty.length : 0;
-    document.getElementById("prumer").textContent = "Průměrná hodnota: " + prumer.toFixed(2);
+    let znamka = "";
+    if (prumer <= 1.5) {
+        znamka = "A";
+    } else if (prumer <= 2.5) {
+        znamka = "B";
+    } else if (prumer <= 3.5) {
+        znamka = "C";
+    } else if (prumer <= 4.5) {
+        znamka = "D";
+    } else {
+        znamka = "F";
+    }
+    document.getElementById("prumer").textContent = "Průměrná hodnota: " + prumer.toFixed(2) + " (" + znamka + ")";
 }
+
+// Přidání CSS třídy pro modré pozadí
+const style = document.createElement('style');
+style.innerHTML = `
+    .selected {
+        background-color: blue;
+        color: white;
+    }
+`;
+document.head.appendChild(style);
