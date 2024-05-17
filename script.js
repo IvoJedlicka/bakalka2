@@ -14,6 +14,12 @@ let maticeText = [
     "Příprava na vyučování má rezervy, často nemá v pořádku některé pomůcky na vyučovací hodinu. Většina domácích úkolů je vypracována uspokojivě.V případě absence si bez upozornění učitele nedoplní samostatně učivo.",
         "Na vyučovací hodiny se většinou nepřipravuje, často chybí potřebné pomůcky. Projevuje se časté neplnění povinností a domácích úkolů. V případě absence si bez opakovaného upozornění učitele nedoplní učivo.",
         "Na vyučování se nepřipravuje, nenosí předepsané pomůcky. Má liknavý přístup k povinnostem a neplní zadané úkoly. Ani po upozornění učitele není učivo doplněné."]
+["SEŠIT/PORTFOLIO", "Sešit (případně portfolio) si vede pečlivě, zápisy v sešitě jsou přehledné a úplné", 
+    "Sešit (případně portfolio) si zpravidla vede pečlivě, zápisy v sešitě jsou většinou přehledné a úplné.", 
+    "Sešit  (případně portfolio) vede nepravidelně, občas chybí část zápisu nebo jsou zápisy nepřehledné, chaotické.",
+    "Sešit  (případně portfolio) vede nepravidelně, chybí  zápisy, nepřehledné, chaotické.", 
+    "V sešitě  (případně portfoliu) chybí množství  zápisů nebo záznamů. Nevede sešit (portfolio) či má jen občasný zápis nebo záznam."]
+]
 ];
 
 // Matice přiřazující číselné hodnoty k textovým hodnotám
@@ -21,6 +27,7 @@ let maticeHodnot = [
     [0, 0, 0, 0, 0, 0],
     [0, 1, 2, 3, 4, 5],
     [0, 1, 2, 3, 4, 5],
+    [0, 1, 2, 3, 4, 5]
 ];
 
 // Pole pro uchování hodnot buňek po kliknutí
