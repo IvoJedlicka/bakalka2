@@ -1,3 +1,4 @@
+/* styles.css */
 table {
     border-collapse: collapse;
     margin-bottom: 20px;
@@ -12,4 +13,10 @@ td, th {
 #prumer {
     font-size: 18px;
     font-weight: bold;
+}
+
+/* Přidáme třídu pro modré pozadí */
+.selected {
+    background-color: blue;
+    color: white; /* Pro lepší čitelnost textu na modrém pozadí */
 }
