@@ -19,7 +19,6 @@ let maticeText = [
     "Sešit  (případně portfolio) vede nepravidelně, občas chybí část zápisu nebo jsou zápisy nepřehledné, chaotické.",
     "Sešit  (případně portfolio) vede nepravidelně, chybí  zápisy, nepřehledné, chaotické.", 
     "V sešitě  (případně portfoliu) chybí množství  zápisů nebo záznamů. Nevede sešit (portfolio) či má jen občasný zápis nebo záznam."]
-]
 ];
 
 // Matice přiřazující číselné hodnoty k textovým hodnotám
