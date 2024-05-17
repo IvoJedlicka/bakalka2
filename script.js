@@ -1,3 +1,5 @@
+// script.js
+
 // Matice obsahující textové hodnoty
 let maticeText = [
     ["-", "A", "B", "C", "D", "E"],
@@ -34,22 +36,24 @@ for (let i = 0; i < maticeText.length; i++) {
         bunka.dataset.row = i; // Přidáme vlastnost dataset s indexem řádku
         bunka.dataset.column = j; // Přidáme vlastnost dataset s indexem sloupce
         bunka.addEventListener("click", function() {
-            toggleHodnotu(parseInt(this.dataset.row), parseInt(this.dataset.column));
+            toggleHodnotu(parseInt(this.dataset.row), parseInt(this.dataset.column), this);
         });
         radka.appendChild(bunka);
     }
     tabulka.appendChild(radka);
 }
 
-// Funkce pro přidání nebo odebrání hodnoty do/z pole
-function toggleHodnotu(row, column) {
+// Funkce pro přidání nebo odebrání hodnoty do/z pole a změnu barvy buňky
+function toggleHodnotu(row, column, element) {
     let hodnota = maticeHodnot[row][column];
     if (hodnota === 0) return; // Pokud je hodnota nula, nedělej nic
     let index = hodnoty.indexOf(hodnota);
     if (index === -1) {
         hodnoty.push(hodnota); // Přidej hodnotu do pole, pokud tam není
+        element.classList.add("selected"); // Přidej třídu pro modré pozadí
     } else {
         hodnoty.splice(index, 1); // Odeber hodnotu z pole, pokud tam je
+        element.classList.remove("selected"); // Odeber třídu pro modré pozadí
     }
     aktualizujPrumer();
 }
